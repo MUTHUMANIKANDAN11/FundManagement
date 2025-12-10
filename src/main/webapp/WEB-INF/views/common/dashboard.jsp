@@ -24,6 +24,9 @@
 	} else if (user.getRole().equals("HOD")) {
 		
 	%>
+	<form action="${pageContext.request.contextPath}/logout">
+		<button type="submit">logout</button>
+	</form>
 	<h3>${user.getRole()}</h3>
 		
 	<form action="${pageContext.request.contextPath}/SymposiumForm" method="Post" >
