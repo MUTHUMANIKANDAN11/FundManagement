@@ -35,7 +35,7 @@ public class DashboardServlet extends HttpServlet {
     	
     	if(user == null) {
     		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/common/login.jsp");
-    		rd.forward(req, res);    		
+    		rd.forward(req, res);
     	}
     	else {
     		if(user.getRole().equals("ADMIN")) {

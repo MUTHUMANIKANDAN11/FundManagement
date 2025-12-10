@@ -18,25 +18,29 @@
 	request.setAttribute("user", user);
 	
 	
-    if (user == null) {
-	    	response.sendRedirect("dashboard");
-	    	
+	if (user == null) {
+	    response.sendRedirect("index.jsp");
+	    return;
 	} else if (user.getRole().equals("HOD")) {
 		
 	%>
 	<h3>${user.getRole()}</h3>
 		
-		<c:forEach var="symp" items="${Symps}">
-			<form action="SymposiumById">
-				<input type="hidden" value="${symp.symp_id}" name="symp_id" >
-				<input type="hidden" value="/SymposiumDetails.jsp" name="url" >
-				<button type="submit" >
-			        <p>Title : ${symp.title} </p>
-			        <p>Acadamic Year : ${symp.academic_year} </p>
-			        <p>Allocation : ${symp.allocation} </p>				
-				</button>
-			</form>
-	    </c:forEach>
+	<form action="${pageContext.request.contextPath}/SymposiumForm" method="Post" >
+	    <button type="submit" >Add Symposium</button>	    
+    </form>
+	
+	<c:forEach var="symp" items="${Symps}">
+		<form action="Symposium">
+			<input type="hidden" value="${symp.symp_id}" name="symp_id" >
+			<input type="hidden" value="/SymposiumDetails.jsp" name="url" >
+			<button type="submit" >
+		        <p>Title : ${symp.title} </p>
+		        <p>Acadamic Year : ${symp.academic_year} </p>
+		        <p>Allocation : ${symp.allocation} </p>				
+			</button>
+		</form>
+    </c:forEach>
 	    
 	
 	<%

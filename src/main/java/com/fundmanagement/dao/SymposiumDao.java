@@ -47,6 +47,8 @@ public class SymposiumDao {
 			 
 			 while(rs.next()) {
 				Symposium symp = formSymposium(rs);
+				symp.setCarry_forward(rs.getDouble("carry_forward"));
+				symp.setTotal(rs.getDouble("total"));
 				
 				symps.add(symp);
 			 }
@@ -82,6 +84,8 @@ public class SymposiumDao {
 			 
 			 while(rs.next()) {
 				 Symposium symp = formSymposium(rs);
+				 symp.setCarry_forward(rs.getDouble("carry_forward"));
+				 symp.setTotal(rs.getDouble("total"));
 				 symps.add(symp);
 			 }
 			 
@@ -115,6 +119,8 @@ public class SymposiumDao {
 			 
 			 if(rs.next()) {
 				symp = formSymposium(rs);
+				symp.setCarry_forward(rs.getDouble("carry_forward"));
+				symp.setTotal(rs.getDouble("total"));
 			 }
 
 		 }
@@ -150,6 +156,8 @@ public class SymposiumDao {
 			 
 			 while(rs.next()) {
 				Symposium symp = formSymposium(rs);
+				symp.setCarry_forward(rs.getDouble("carry_forward"));
+				symp.setTotal(rs.getDouble("total"));
 				symps.add(symp);
 			 }
 

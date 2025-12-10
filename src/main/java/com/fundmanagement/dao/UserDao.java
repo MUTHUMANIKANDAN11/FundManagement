@@ -1,6 +1,8 @@
 package com.fundmanagement.dao;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.fundmanagement.model.User;
 
@@ -16,6 +18,42 @@ public class UserDao {
 		
 		return user;
 	}
+	
+	public List<User> getUsersDeptRole(int dept_id, String role){
+		 List<User> users = new ArrayList<>();
+		 String query = "Select * from Users where dept_id = ? and role = ?";
+		 Connection con = null;
+		 PreparedStatement ps = null;
+		 ResultSet rs = null;
+		 
+		 try {
+			 Class.forName(driver);
+			 con = DriverManager.getConnection(url, name, password);
+			 ps = con.prepareStatement(query);
+			 
+			 ps.setInt(1, dept_id);
+			 ps.setString(2, role);
+			 rs = ps.executeQuery();
+			 
+			 while(rs.next()) {
+				User user = formUser(rs);
+				
+				users.add(user);
+			 }
+
+		 }
+		 catch (Exception e) {
+			 e.printStackTrace(); 
+			 System.out.println("Error " + e);
+		 }
+		 finally {
+			 try {if(rs != null) rs.close();} catch (Exception e) {}
+			try {if(ps != null) ps.close();} catch (Exception e) {}
+			try {if(con != null) con.close();} catch(Exception e) {}
+		 }
+		 
+		 return users;
+	 }
 	
 	public User getUserById(int user_id) {
 		 User user = null;
