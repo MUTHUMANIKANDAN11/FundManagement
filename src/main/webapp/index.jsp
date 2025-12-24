@@ -10,7 +10,7 @@
 	<h2>Fund Management System</h2>
 
     <!-- This form will call the LoginServlet -->
-    <form action="dashboard" method="get">
+    <form action="${pageContext.request.contextPath}/dashboard" method="get">
         <button type="submit">Get Started</button>
     </form>
 </body>

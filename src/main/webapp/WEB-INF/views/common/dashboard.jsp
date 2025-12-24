@@ -1,7 +1,7 @@
 <%@page import="java.awt.geom.Path2D"%>
 <%@ page isELIgnored="false" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	import="com.fundmanagement.model.User, com.fundmanagement.model.Symposium , java.util.List"
+	import="com.management.model.User, com.management.model.Symposium, java.util.List"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
@@ -17,7 +17,6 @@
     User user = (User) session.getAttribute("User");
 	request.setAttribute("user", user);
 	
-	
 	if (user == null) {
 	    response.sendRedirect("index.jsp");
 	    return;
@@ -31,6 +30,11 @@
 		
 	<form action="${pageContext.request.contextPath}/SymposiumForm" method="Post" >
 	    <button type="submit" >Add Symposium</button>	    
+    </form>
+    
+    <form action="ManageUsers">
+		<input type="hidden" value="${user.getDept_id()}" name="dept_id" >
+    	<button type="submit" >manage users</button>
     </form>
 	
 	<c:forEach var="symp" items="${Symps}">
