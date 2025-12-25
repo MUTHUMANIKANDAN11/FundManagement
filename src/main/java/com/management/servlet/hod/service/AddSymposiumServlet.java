@@ -17,16 +17,12 @@ import com.management.model.Symposium;
 /**
  * Servlet implementation class AddSymposiumServlet
  */
-@WebServlet("/AddSymposium")
+@WebServlet("/hod/AddSymposium")
 public class AddSymposiumServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		HttpSession session = req.getSession();
-		
-		if(session == null || session.getAttribute("User") == null) {
-			res.sendRedirect("");
-		}
 		
 		String dept_str = req.getParameter("dept_id");
         String title = req.getParameter("title");
@@ -54,7 +50,7 @@ public class AddSymposiumServlet extends HttpServlet {
         	req.setAttribute("president_id", president_str);
         	req.setAttribute("auditor_id", auditor_str);
         	
-            req.getRequestDispatcher("SymposiumForm").forward(req, res);
+            req.getRequestDispatcher("hod/SymposiumForm").forward(req, res);
             return;
         }
         
@@ -64,7 +60,7 @@ public class AddSymposiumServlet extends HttpServlet {
     	int president_id = Integer.parseInt(president_str);
     	int auditor_id = Integer.parseInt(auditor_str);        	
         
-    	String errorUrl = "SymposiumForm";
+    	String errorUrl = "hod/SymposiumForm";
     	
         if(academic_year < 2025 || academic_year > 2030) {
             req.setAttribute("errorMessage", "Academic year must be between 2025 and 2030");

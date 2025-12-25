@@ -14,7 +14,7 @@ import com.management.model.User;
 /**
  * Servlet implementation class SelectUserServlet
  */
-@WebServlet("/DeleteUser")
+@WebServlet("/hod/DeleteUser")
 public class DeleteUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -50,6 +50,6 @@ public class DeleteUserServlet extends HttpServlet {
 			request.setAttribute("errorMessage", errorMessage);
 		}
 		
-		request.getRequestDispatcher("ManageUsers").forward(request, response);
+		request.getRequestDispatcher("/hod/ManageUsers").forward(request, response);
 	}
 }

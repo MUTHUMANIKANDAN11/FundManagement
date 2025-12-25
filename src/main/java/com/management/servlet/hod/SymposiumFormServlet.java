@@ -18,7 +18,7 @@ import com.management.model.User;
 /**
  * Servlet implementation class SymposiumFormServlet
  */
-@WebServlet("/SymposiumForm")
+@WebServlet("/hod/SymposiumForm")
 public class SymposiumFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

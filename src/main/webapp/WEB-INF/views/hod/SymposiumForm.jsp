@@ -26,7 +26,7 @@
 		List<User> auditors = (List<User>) request.getAttribute("Auditors");
 	%>
 
-	<form action="dashboard" >
+	<form action="${pageContext.request.contextPath}/dashboard" >
 		<Button type="submit" >Back</Button>
 	</form>
 
@@ -34,7 +34,7 @@
     
     <p>Department : ${dept.dept_name}</p>
     
-	<form action="${pageContext.request.contextPath}/AddSymposium" method="post">
+	<form action="${pageContext.request.contextPath}/hod/AddSymposium" method="post">
 		<input type="hidden" name="dept_id" value="<%= dept_id %>" ><br><br>
 
 		

@@ -8,7 +8,7 @@ import="com.management.model.Symposium, com.management.model.User"
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="dashboard">
+	<form action="${pageContext.request.contextPath}/dashboard">
 		<Button type="submit" >Back</Button>
 	</form>
 	<h2>Symposium Details</h2>

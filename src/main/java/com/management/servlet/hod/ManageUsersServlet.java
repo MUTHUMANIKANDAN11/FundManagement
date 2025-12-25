@@ -17,7 +17,7 @@ import com.management.model.User;
 /**
  * Servlet implementation class ManageUsersServlet
  */
-@WebServlet("/ManageUsers")
+@WebServlet("/hod/ManageUsers")
 public class ManageUsersServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

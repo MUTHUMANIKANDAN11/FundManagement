@@ -25,7 +25,7 @@
 	boolean isAdd = false;
 	%>
 	
-	<form action="dashboard">
+	<form action="${pageContext.request.contextPath}/dashboard">
 		<Button type="submit" >Back</Button>
 	</form>
 	<br>

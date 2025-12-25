@@ -12,15 +12,10 @@ import com.management.dao.UserDao;
 import com.management.model.User;
 
 
-@WebServlet("/AddUser")
+@WebServlet("/hod/AddUser")
 public class AddUserServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		User currentUser = (User) req.getSession().getAttribute("User");
-		
-		if(currentUser == null) {
-			res.sendRedirect("index.jsp");
-			return;
-		}
 		
 		String name = req.getParameter("name");
 		String email = req.getParameter("email");

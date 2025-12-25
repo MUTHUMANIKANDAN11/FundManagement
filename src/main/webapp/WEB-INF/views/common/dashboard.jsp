@@ -28,17 +28,17 @@
 	</form>
 	<h3>${user.getRole()}</h3>
 		
-	<form action="${pageContext.request.contextPath}/SymposiumForm" method="Post" >
+	<form action="${pageContext.request.contextPath}/hod/SymposiumForm" method="Post" >
 	    <button type="submit" >Add Symposium</button>	    
     </form>
     
-    <form action="ManageUsers">
+    <form action="hod/ManageUsers">
 		<input type="hidden" value="${user.getDept_id()}" name="dept_id" >
     	<button type="submit" >manage users</button>
     </form>
 	
 	<c:forEach var="symp" items="${Symps}">
-		<form action="Symposium">
+		<form action="hod/Symposium">
 			<input type="hidden" value="${symp.symp_id}" name="symp_id" >
 			<input type="hidden" value="/SymposiumDetails.jsp" name="url" >
 			<button type="submit" >

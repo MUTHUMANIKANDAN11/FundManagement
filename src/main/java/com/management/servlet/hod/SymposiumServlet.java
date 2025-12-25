@@ -20,7 +20,7 @@ import com.management.model.User;
 /**
  * Servlet implementation class SymposiumById
  */
-@WebServlet("/Symposium")
+@WebServlet("/hod/Symposium")
 public class SymposiumServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
