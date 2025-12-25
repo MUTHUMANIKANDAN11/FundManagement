@@ -4,6 +4,7 @@ package com.management.servlet.hod;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,7 +22,13 @@ public class ManageUsersServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		int dept_id = Integer.parseInt(req.getParameter("dept_id"));
+		User user = (User) req.getSession().getAttribute("User");
+		if(user == null) {
+    		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/common/login.jsp");
+    		rd.forward(req, res);
+    		return;
+    	}
+		int dept_id = user.getDept_id();
 		
 		UserDao dao = new UserDao();
 		List<User> auditors = dao.getUsersDeptRole(dept_id, "AUDITOR");

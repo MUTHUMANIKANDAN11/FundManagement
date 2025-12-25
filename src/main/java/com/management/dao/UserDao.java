@@ -22,7 +22,7 @@ public class UserDao {
 	
 	public List<User> getUsersDeptRole(int dept_id, String role){
 		 List<User> users = new ArrayList<>();
-		 String query = "Select * from Users where dept_id = ? and role = ?";
+		 String query = "Select * from Users where dept_id = ? and role = ? and state = true";
 		 Connection con = null;
 		 PreparedStatement ps = null;
 		 ResultSet rs = null;
@@ -188,6 +188,36 @@ public class UserDao {
 		 finally {
 			try {if(ps != null) ps.close();} catch (Exception e) {}
 			try {if(con != null) con.close();} catch(Exception e) {}
+		 }
+		 
+		 return false;
+		 
+	 }
+	 
+	 public boolean deactivateUser(int user_id) {
+		 String query = "update users set state = false where user_id = ?";
+		 Connection con = null;
+		 PreparedStatement ps = null;
+		 
+		 try {
+			 Class.forName(driver);
+			 con = DriverManager.getConnection(url, name, password);
+			 ps = con.prepareStatement(query);
+			 
+			 ps.setInt(1, user_id);
+			 
+			 int row = ps.executeUpdate();
+			 
+			 if(row > 0) {
+				 return true;
+			 }
+			 
+		 } catch (Exception e) {
+			 e.printStackTrace(); 
+		 }
+		 finally {
+			 try {if(ps != null) ps.close();} catch (Exception e) {}
+			 try {if(con != null) con.close();} catch(Exception e) {}
 		 }
 		 
 		 return false;

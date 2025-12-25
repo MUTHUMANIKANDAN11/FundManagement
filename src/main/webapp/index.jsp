@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Fund Management</title>
 </head>
 <body>
 	<h2>Fund Management System</h2>

@@ -20,6 +20,8 @@
 	    response.sendRedirect("index.jsp");
 	    return;
 	}
+	
+	boolean isAdd = false;
 	%>
 	
 	<form action="dashboard">
@@ -29,23 +31,36 @@
 	<h2>Auditors</h2>
 	
 	<c:forEach var="auditor" items="${Auditors}">
-	    <form action="Symposium" method="post">
+	    <form action="DeleteUser" method="get">
 	        <div>${auditor.name}</div>
-	
-	        <input type="hidden" name="url" value="/SymposiumDetails.jsp"/>
-	        <button type="submit">view profile</button>
+	        <div>${auditor.email}</div>
+	        <input type="hidden" name="user_id" value="${auditor.user_id}" />
+	        <button type="submit">Delete</button>
 	    </form>
+	    <br>
 	</c:forEach>
+	
+	<%
+		User auditor = (User) session.getAttribute("selected-auditor");
+		if(auditor != null){
+		%>
+			<jsp:include page="/WEB-INF/views/hod/UserDetails.jsp">
+			    <jsp:param name="title" value="Dashboard"/>
+			</jsp:include>
+		<%
+		}
+	%>
 
 	<h2>Presidents</h2>
 	
 	<c:forEach var="president" items="${Presidents}">
-	    <form action="Symposium" method="post">
+	    <form action="DeleteUser" method="get">
 	        <div>${president.name}</div>
-	
-	        <input type="hidden" name="url" value="/SymposiumDetails.jsp"/>
-	        <button type="submit">view profile</button>
+	        <div>${president.email}</div>
+			<input type="hidden" name="user_id" value="${president.user_id}" />
+	        <button type="submit">Delete</button>
 	    </form>
+	    <br>
 	</c:forEach>
 
 	
