@@ -14,6 +14,7 @@
 	
 	<%
 	User user = (User) session.getAttribute("User");
+	
 	request.setAttribute("user", user);
 	
 	if (user == null) {
@@ -26,6 +27,10 @@
 	
 	<form action="dashboard">
 		<Button type="submit" >Back</Button>
+	</form>
+	<br>
+	<form action="AddUserForm" method="post" >
+		<button type="submit" >Add user</button>
 	</form>
 	
 	<h2>Auditors</h2>
@@ -40,16 +45,6 @@
 	    <br>
 	</c:forEach>
 	
-	<%
-		User auditor = (User) session.getAttribute("selected-auditor");
-		if(auditor != null){
-		%>
-			<jsp:include page="/WEB-INF/views/hod/UserDetails.jsp">
-			    <jsp:param name="title" value="Dashboard"/>
-			</jsp:include>
-		<%
-		}
-	%>
 
 	<h2>Presidents</h2>
 	

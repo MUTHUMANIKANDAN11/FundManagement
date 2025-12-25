@@ -15,6 +15,11 @@
 	<%
 		User user = (User) session.getAttribute("User");
 	
+		if(user == null){
+			response.sendRedirect("index.jsp");
+		    return;
+		}
+	
 		int dept_id = user.getDept_id();
 
 		List<User> presidents = (List<User>) request.getAttribute("Presidents");

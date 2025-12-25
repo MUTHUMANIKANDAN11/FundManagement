@@ -22,7 +22,9 @@ public class ManageUsersServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+
 		User user = (User) req.getSession().getAttribute("User");
+		
 		if(user == null) {
     		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/common/login.jsp");
     		rd.forward(req, res);
