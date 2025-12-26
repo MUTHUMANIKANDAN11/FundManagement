@@ -17,7 +17,7 @@ import="com.management.model.Symposium, com.management.model.User, java.util.Lis
 		List<User> auditors = null;
 	%>
 
-	<form action="hod/ManageUsers" >
+	<form action="ManageUsers" >
 		<Button type="submit" >Back</Button>
 	</form>
 

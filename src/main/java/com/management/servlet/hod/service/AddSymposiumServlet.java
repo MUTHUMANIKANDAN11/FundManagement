@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.jsp.PageContext;
 
 import com.management.dao.SymposiumDao;
 import com.management.model.Symposium;
@@ -169,7 +170,7 @@ public class AddSymposiumServlet extends HttpServlet {
         if (newSymp != null && newSymp.getSymp_id() > 0) {
         	session = req.getSession();
         	
-            res.sendRedirect("dashboard");
+            res.sendRedirect(req.getContextPath() + "/dashboard");
             
         } else {
             req.setAttribute("errorMessage", "Failed to add symposium.");

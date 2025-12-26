@@ -32,39 +32,33 @@ public class DashboardServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
     	HttpSession session = req.getSession();
     	User user = (User) session.getAttribute("User");
-    	
-    	if(user == null) {
-    		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/common/login.jsp");
-    		rd.forward(req, res);
-    	}
-    	else {
-    		if(user.getRole().equals("ADMIN")) {
-    			req.setAttribute("dept_id", user.getDept_id());
-    			req.setAttribute("url", "pages/dashboard.jsp");
-    			
-    			req.getRequestDispatcher("SymposiumByDepartment").forward(req, res);
-    		}
-    		
-    		else if(user.getRole().equals("HOD")) {
-    			List<Symposium> symps = SymposiumByDepartment(user.getDept_id());
-    			symps.sort(Comparator.comparingInt(Symposium::getAcademic_year));
-    			req.setAttribute("Symps", symps);
-    		}
-    		
-    		else if(user.getRole().equals("PRESIDENT")) {
-    			req.setAttribute("url", "pages/dashboard.jsp");
-    			req.getRequestDispatcher("SponsorshipsOfDepartment").forward(req, res);
-    		}
-    		
-    		else if(user.getRole().equals("AUDITOR")) {
-    			req.setAttribute("dept_id", user.getDept_id());
-    			req.setAttribute("url", "pages/dashboard.jsp");
+	
+		if(user.getRole().equals("ADMIN")) {
+			req.setAttribute("dept_id", user.getDept_id());
+			req.setAttribute("url", "pages/dashboard.jsp");
+			
+			req.getRequestDispatcher("SymposiumByDepartment").forward(req, res);
+		}
+		
+		else if(user.getRole().equals("HOD")) {
+			List<Symposium> symps = SymposiumByDepartment(user.getDept_id());
+			symps.sort(Comparator.comparingInt(Symposium::getAcademic_year));
+			req.setAttribute("Symps", symps);
+		}
+		
+		else if(user.getRole().equals("PRESIDENT")) {
+			req.setAttribute("url", "pages/dashboard.jsp");
+			req.getRequestDispatcher("SponsorshipsOfDepartment").forward(req, res);
+		}
+		
+		else if(user.getRole().equals("AUDITOR")) {
+			req.setAttribute("dept_id", user.getDept_id());
+			req.setAttribute("url", "pages/dashboard.jsp");
 
-    			req.getRequestDispatcher("SymposiumByDepartment").forward(req, res);
-    		}
-    		
-    		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/common/dashboard.jsp");
-    		rd.forward(req, res);
-    	}
+			req.getRequestDispatcher("SymposiumByDepartment").forward(req, res);
+		}
+		
+		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/common/dashboard.jsp");
+		rd.forward(req, res);
     }
 }
