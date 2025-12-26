@@ -25,11 +25,6 @@ public class ManageUsersServlet extends HttpServlet {
 
 		User user = (User) req.getSession().getAttribute("User");
 		
-		if(user == null) {
-    		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/common/login.jsp");
-    		rd.forward(req, res);
-    		return;
-    	}
 		int dept_id = user.getDept_id();
 		
 		UserDao dao = new UserDao();

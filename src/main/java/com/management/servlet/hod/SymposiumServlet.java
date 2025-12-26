@@ -28,11 +28,6 @@ public class SymposiumServlet extends HttpServlet {
 		int symp_id = Integer.parseInt(request.getParameter("symp_id"));
 		User user = (User) request.getSession().getAttribute("User");
 		
-		if(user == null) {
-    		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/login.jsp");
-    		rd.forward(request, response);
-    	}
-		
 		SymposiumDao dao = new SymposiumDao();
 		Symposium symp = dao.getSymposiumById(symp_id);
 		

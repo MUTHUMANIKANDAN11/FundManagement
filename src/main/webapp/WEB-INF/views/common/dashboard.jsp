@@ -43,7 +43,7 @@
 			<input type="hidden" value="/SymposiumDetails.jsp" name="url" >
 			<button type="submit" >
 		        <p>Title : ${symp.title} </p>
-		        <p>Acadamic Year : ${symp.academic_year} </p>
+		        <p>Academic Year : ${symp.academic_year} </p>
 		        <p>Allocation : ${symp.allocation} </p>				
 			</button>
 		</form>

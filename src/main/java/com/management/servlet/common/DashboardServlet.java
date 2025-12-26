@@ -32,7 +32,7 @@ public class DashboardServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
     	HttpSession session = req.getSession();
     	User user = (User) session.getAttribute("User");
-	
+    	
 		if(user.getRole().equals("ADMIN")) {
 			req.setAttribute("dept_id", user.getDept_id());
 			req.setAttribute("url", "pages/dashboard.jsp");
@@ -60,5 +60,6 @@ public class DashboardServlet extends HttpServlet {
 		
 		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/common/dashboard.jsp");
 		rd.forward(req, res);
+	
     }
 }

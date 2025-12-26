@@ -25,11 +25,6 @@ public class SymposiumFormServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User user = (User) request.getSession().getAttribute("User");
 		
-		if(user == null) {
-    		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/login.jsp");
-    		rd.forward(request, response);
-    	}
-		
 		UserDao user_dao = new UserDao();
 		List<User> presidents = user_dao.getUsersDeptRole(user.getDept_id(), "PRESIDENT");
 		List<User> auditors = user_dao.getUsersDeptRole(user.getDept_id(), "AUDITOR");

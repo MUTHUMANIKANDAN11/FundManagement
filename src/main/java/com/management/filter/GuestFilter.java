@@ -7,7 +7,7 @@ import javax.servlet.http.*;
 
 import com.management.model.User;
 
-@WebFilter("/login")
+@WebFilter("/LoginForm")
 public class GuestFilter implements Filter {
 
     @Override

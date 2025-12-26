@@ -34,7 +34,7 @@ public class HodFilter implements Filter {
 
         // Not logged in
         if (user == null) {
-            response.sendRedirect(request.getContextPath() + "/index.jsp");
+            response.sendRedirect(request.getContextPath() + "/LoginForm");
             return;
         }
 

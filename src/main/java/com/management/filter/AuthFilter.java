@@ -21,9 +21,7 @@ public class AuthFilter implements Filter {
         User user = (session != null) ? (User) session.getAttribute("User") : null;
 
         if (user == null) {
-        	request.getRequestDispatcher("/WEB-INF/views/common/login.jsp")
-            .forward(request, response);
-        	
+        	response.sendRedirect(request.getContextPath() + "/LoginForm");
         	return;
         }
 
