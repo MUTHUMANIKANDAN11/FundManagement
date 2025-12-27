@@ -36,6 +36,10 @@
 		<input type="hidden" value="${user.getDept_id()}" name="dept_id" >
     	<button type="submit" >manage users</button>
     </form>
+    
+    <form action="hod/YearReportForm" method="post" >
+    	<button type="submit" >Year Report</button>
+    </form>
 	
 	<c:forEach var="symp" items="${Symps}">
 		<form action="hod/Symposium">

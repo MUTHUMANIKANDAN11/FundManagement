@@ -60,7 +60,7 @@ public class AddSymposiumServlet extends HttpServlet {
     	int president_id = Integer.parseInt(president_str);
     	int auditor_id = Integer.parseInt(auditor_str);        	
         
-    	String errorUrl = "hod/SymposiumForm";
+    	String errorUrl = "SymposiumForm";
     	
         if(academic_year < 2025 || academic_year > 2030) {
             req.setAttribute("errorMessage", "Academic year must be between 2025 and 2030");
