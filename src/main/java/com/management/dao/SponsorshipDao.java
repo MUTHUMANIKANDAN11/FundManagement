@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.management.model.Sponsorship;
+import com.management.model.Symposium;
 
 public class SponsorshipDao {
 	static String driver = "com.mysql.jdbc.Driver";
@@ -156,6 +157,44 @@ public class SponsorshipDao {
 
         return sponsorships;
     }
+    
+    public List<Sponsorship> getSponsorshipsByDept(int deptId) {
+	    String query = "select * from Sponsorships";
+
+	    Connection con = null;
+	    PreparedStatement ps = null;
+	    ResultSet rs = null;
+	    List<Sponsorship> sponsorships = new ArrayList<>();
+
+	    SymposiumDao symposiumDao = new SymposiumDao();
+
+	    try {
+	        Class.forName(driver);
+	        con = DriverManager.getConnection(url, name, password);
+	        ps = con.prepareStatement(query);
+
+	        rs = ps.executeQuery();
+	        while (rs.next()) {
+	            int sympId = rs.getInt("symp_id");
+
+	            Symposium symp = symposiumDao.getSymposiumById(sympId);
+	            if (symp != null && symp.getDept_id() == deptId) {
+	                Sponsorship s = new Sponsorship(rs.getInt("sponsor_id"), rs.getDouble("amount"), rs.getDate("sponsorship_date"), sympId);
+	                s.setSponsorship_id(rs.getInt("sponsorship_id"));
+	                sponsorships.add(s);
+	            }
+	        }
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        try { if (rs != null) rs.close(); } catch (Exception e) {}
+	        try { if (ps != null) ps.close(); } catch (Exception e) {}
+	        try { if (con != null) con.close(); } catch (Exception e) {}
+	    }
+	    
+	    return sponsorships;
+	}
 
     public Sponsorship getSponsorshipById(int sponsorship_id) {
         String query = "select * from Sponsorships where sponsorship_id = ?";

@@ -55,4 +55,10 @@ public class Sponsorship {
 	public void setSymp_id(int symposium_id) {
 		this.symp_id = symposium_id;
 	}
+
+	@Override
+	public String toString() {
+		return "Sponsorship [sponsorship_id=" + sponsorship_id + ", sponsor_id=" + sponsor_id + ", amount=" + amount
+				+ ", sponsorship_date=" + sponsorship_date + ", symp_id=" + symp_id + "]";
+	}
 }

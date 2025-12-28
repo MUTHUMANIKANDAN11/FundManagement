@@ -3,7 +3,9 @@ package com.management.servlet.common;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,7 +16,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.management.model.User;
+import com.management.dao.DepartmentDao;
+import com.management.dao.SponsorDao;
+import com.management.dao.SponsorshipDao;
 import com.management.dao.SymposiumDao;
+import com.management.model.Department;
+import com.management.model.Sponsor;
+import com.management.model.Sponsorship;
 import com.management.model.Symposium;
 
 @WebServlet("/dashboard")
@@ -47,8 +55,33 @@ public class DashboardServlet extends HttpServlet {
 		}
 		
 		else if(user.getRole().equals("PRESIDENT")) {
-			req.setAttribute("url", "pages/dashboard.jsp");
-			req.getRequestDispatcher("SponsorshipsOfDepartment").forward(req, res);
+	        int dept_id =  user.getDept_id();
+
+            DepartmentDao deptDao = new DepartmentDao();
+            Department department = deptDao.getDepartmentById(dept_id);
+
+            SponsorshipDao sponsorshipDao = new SponsorshipDao();
+            List<Sponsorship> sponsorships = sponsorshipDao.getSponsorshipsByDept(dept_id);
+	        
+            System.out.println(sponsorships);
+            
+	        Map<Integer, String> sponsorMap = new HashMap<>();
+			SponsorDao sponsor_dao = new SponsorDao();
+			
+			for (Sponsor sp : sponsor_dao.getAllSponsors()) {
+			    sponsorMap.put(sp.getSponsor_id(), sp.getName());
+			}
+			
+			Map<Integer, String> symposiumMap = new HashMap<>();
+			SymposiumDao symposiumDao = new SymposiumDao();
+			for (Symposium symp : symposiumDao .getAllSymposium()) {
+			    symposiumMap.put(symp.getSymp_id(), symp.getTitle());
+			}
+			
+			req.setAttribute("symposiums", symposiumMap);
+			req.setAttribute("sponsors", sponsorMap);
+	        req.setAttribute("department", department);
+	        req.setAttribute("sponsorships", sponsorships);
 		}
 		
 		else if(user.getRole().equals("AUDITOR")) {
