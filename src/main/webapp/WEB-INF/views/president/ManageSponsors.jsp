@@ -7,11 +7,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Manage Sponsors</title>
 </head>
 <body>
-	<h1>Manage Users</h1>
-	
+	<h1>Manage Sponsors</h1>
 	<%
 	User user = (User) session.getAttribute("User");
 	
@@ -30,29 +29,15 @@
 	
 	<h2>Auditors</h2>
 	
-	<c:forEach var="auditor" items="${Auditors}">
+	<c:forEach var="sponsor" items="${sponsors}">
 	    <form action="DeleteUser" method="get">
-	        <div>${auditor.name}</div>
-	        <div>${auditor.email}</div>
-	        <input type="hidden" name="user_id" value="${auditor.user_id}" />
+	        <div>${sponsor.name}</div>
+	        <div>${sponsor.contact_info}</div>
+	        <input type="hidden" name="user_id" value="${sponsor.sponsor_id}" />
 	        <button type="submit">Delete</button>
 	    </form>
 	    <br>
 	</c:forEach>
-	
-
-	<h2>Presidents</h2>
-	
-	<c:forEach var="president" items="${Presidents}">
-	    <form action="DeleteUser" method="get">
-	        <div>${president.name}</div>
-	        <div>${president.email}</div>
-			<input type="hidden" name="user_id" value="${president.user_id}" />
-	        <button type="submit">Delete</button>
-	    </form>
-	    <br>
-	</c:forEach>
-
 	
 </body>
 </html>

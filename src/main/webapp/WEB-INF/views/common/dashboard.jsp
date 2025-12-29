@@ -84,6 +84,11 @@
 			<input type="hidden" value="${user.getDept_id()}" name="dept_id" >
 			<button type="submit" >Add Sponsorhip</button>
 		</form>
+
+		<form action="president/ManageSponsors" method="post" >
+			<input type="hidden" value="${user.getDept_id()}" name="dept_id" >
+			<button type="submit" >Manage Sponsors</button>
+		</form>
 	<%
 	}
 	%>

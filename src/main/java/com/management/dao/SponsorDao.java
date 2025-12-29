@@ -50,6 +50,38 @@ public class SponsorDao {
         return sponsors;
     }
     
+    public List<Sponsor> getByDeptId(int dept_id) {
+        String query = "select * from Sponsors where dept_id = ?";
+        
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        List<Sponsor> sponsors = new ArrayList<>();
+
+        try {
+            Class.forName(driver);
+            con = DriverManager.getConnection(url, name, password);
+            ps = con.prepareStatement(query);
+            
+            ps.setInt(1, dept_id);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                sponsors.add(formSponsor(rs));
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            try { if (rs != null) rs.close(); } catch (Exception e) {}
+            try { if (ps != null) ps.close(); } catch (Exception e) {}
+            try { if (con != null) con.close(); } catch (Exception e) {}
+        }
+        return sponsors;
+    }
+    
     public Sponsor getSponsorById(int sponsor_id) {
         String query = "select * from Sponsors where sponsor_id = ?";
         

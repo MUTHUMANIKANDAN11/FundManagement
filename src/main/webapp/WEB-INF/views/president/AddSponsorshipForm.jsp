@@ -12,11 +12,8 @@
 	<%
 		List<Sponsor> sponsors = (List<Sponsor>) request.getAttribute("sponsors");
     	List<Symposium> symposiums = (List<Symposium>) request.getAttribute("symposiums");
-        
-    	System.out.println(symposiums);
-        System.out.println(sponsors);
 	%>
-	
+
 	<form action="${pageContext.request.contextPath}/dashboard" >
 		<button type="submit" >Back</button>
 	</form>
