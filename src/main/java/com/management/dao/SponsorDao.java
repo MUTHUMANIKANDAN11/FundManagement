@@ -15,12 +15,13 @@ public class SponsorDao {
     private Sponsor formSponsor(ResultSet rs) throws SQLException {
         Sponsor sponsor = new Sponsor(rs.getString("name"), rs.getString("contact_info"));
         sponsor.setSponsor_id(rs.getInt("sponsor_id"));
+        sponsor.setState(rs.getBoolean("state"));
         
         return sponsor;
     }
     
-    public List<Sponsor> getAllSponsors() {
-        String query = "select * from Sponsors";
+    public List<Sponsor> getAllSponsors(int dept_id) {
+        String query = "select * from Sponsors where dept_id = ?";
         
         Connection con = null;
         PreparedStatement ps = null;
@@ -33,6 +34,7 @@ public class SponsorDao {
             con = DriverManager.getConnection(url, name, password);
             ps = con.prepareStatement(query);
             
+            ps.setInt(1, dept_id);
             rs = ps.executeQuery();
 
             while (rs.next()) {

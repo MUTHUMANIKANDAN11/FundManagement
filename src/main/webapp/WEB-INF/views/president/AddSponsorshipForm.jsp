@@ -28,6 +28,7 @@
 		    <%
 			    if (sponsors != null) {
 			        for (Sponsor sponsor : sponsors) {
+			        	if(!sponsor.isState()) continue;
 			%>
 			    <option value="<%= sponsor.getSponsor_id() %>">
 			        <%= sponsor.getName() %> ( <%= sponsor.getContact_info() %> )

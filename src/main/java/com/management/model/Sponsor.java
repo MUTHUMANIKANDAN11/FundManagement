@@ -4,7 +4,8 @@ public class Sponsor {
 	int sponsor_id;
 	String name;
 	String contact_info;
-	
+	boolean state;
+
 	public Sponsor(String name, String contact_info) {
 		super();
 		this.name = name;
@@ -30,9 +31,20 @@ public class Sponsor {
 		this.contact_info = contact_info;
 	}
 
+	public boolean isState() {
+		return state;
+	}
+
+	public void setState(boolean state) {
+		this.state = state;
+	}
+
 	@Override
 	public String toString() {
-		return "Sponsor [sponsor_id=" + sponsor_id + ", name=" + name + ", contact_info=" + contact_info + "]";
+		return "Sponsor [sponsor_id=" + sponsor_id + ", name=" + name + ", contact_info=" + contact_info + ", state="
+				+ state + "]";
 	}
+
+
 	
 }
