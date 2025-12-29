@@ -5,11 +5,13 @@ public class Sponsor {
 	String name;
 	String contact_info;
 	boolean state;
+	int dept_id;
 
-	public Sponsor(String name, String contact_info) {
+	public Sponsor(String name, String contact_info, int dept_id) {
 		super();
 		this.name = name;
 		this.contact_info = contact_info;
+		this.dept_id = dept_id;
 	}
 	
 	public int getSponsor_id() {
@@ -39,12 +41,17 @@ public class Sponsor {
 		this.state = state;
 	}
 
+	public int getDept_id() {
+		return dept_id;
+	}
+
+	public void setDept_id(int dept_id) {
+		this.dept_id = dept_id;
+	}
+
 	@Override
 	public String toString() {
 		return "Sponsor [sponsor_id=" + sponsor_id + ", name=" + name + ", contact_info=" + contact_info + ", state="
-				+ state + "]";
+				+ state + ", dept_id=" + dept_id + "]";
 	}
-
-
-	
 }

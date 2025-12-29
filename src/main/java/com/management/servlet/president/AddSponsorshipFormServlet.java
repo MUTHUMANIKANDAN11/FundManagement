@@ -34,7 +34,7 @@ public class AddSponsorshipFormServlet extends HttpServlet {
 	    List<Symposium> symps = symp_dao.getSymposiumByDept_id(dept_id);
 	    
 	    SponsorDao sponsor_dao = new SponsorDao();
-        List<Sponsor> sponsors = sponsor_dao.getAllSponsors(dept_id);
+        List<Sponsor> sponsors = sponsor_dao.getByDeptId(dept_id);
         
         request.setAttribute("symposiums", symps);
         request.setAttribute("sponsors", sponsors);

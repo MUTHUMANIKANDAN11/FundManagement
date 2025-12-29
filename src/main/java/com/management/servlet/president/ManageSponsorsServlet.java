@@ -27,7 +27,7 @@ public class ManageSponsorsServlet extends HttpServlet {
 		int dept_id = user.getDept_id();
 
 		SponsorDao dao = new SponsorDao();
-		List<Sponsor> sponsors = dao.getByDeptId(dept_id);
+		List<Sponsor> sponsors = dao.getByDeptIdAndState(dept_id);
 
 		request.setAttribute("sponsors", sponsors);
 		

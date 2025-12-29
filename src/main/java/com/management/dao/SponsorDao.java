@@ -13,14 +13,45 @@ public class SponsorDao {
     static String password = "Mk11MYSQL@2004";
 
     private Sponsor formSponsor(ResultSet rs) throws SQLException {
-        Sponsor sponsor = new Sponsor(rs.getString("name"), rs.getString("contact_info"));
+        Sponsor sponsor = new Sponsor(rs.getString("name"), rs.getString("contact_info"), rs.getInt("dept_id"));
         sponsor.setSponsor_id(rs.getInt("sponsor_id"));
         sponsor.setState(rs.getBoolean("state"));
         
         return sponsor;
     }
     
-    public List<Sponsor> getAllSponsors(int dept_id) {
+    public List<Sponsor> getAllSponsors() {
+        String query = "select * from Sponsors";
+        
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        List<Sponsor> sponsors = new ArrayList<>();
+
+        try {
+            Class.forName(driver);
+            con = DriverManager.getConnection(url, name, password);
+            ps = con.prepareStatement(query);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                sponsors.add(formSponsor(rs));
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            try { if (rs != null) rs.close(); } catch (Exception e) {}
+            try { if (ps != null) ps.close(); } catch (Exception e) {}
+            try { if (con != null) con.close(); } catch (Exception e) {}
+        }
+        return sponsors;
+    }
+    
+    public List<Sponsor> getByDeptId(int dept_id) {
         String query = "select * from Sponsors where dept_id = ?";
         
         Connection con = null;
@@ -52,7 +83,7 @@ public class SponsorDao {
         return sponsors;
     }
     
-    public List<Sponsor> getByDeptId(int dept_id) {
+    public List<Sponsor> getByDeptIdAndState(int dept_id) {
         String query = "select * from Sponsors where dept_id = ? and state = true";
         
         Connection con = null;
@@ -152,7 +183,7 @@ public class SponsorDao {
 
 
     public Sponsor addSponsor(Sponsor sponsor) {
-        String query = "insert into Sponsors (name, contact_info) values (?, ?)";
+        String query = "insert into Sponsors (name, contact_info, dept_id) values (?, ?, ?)";
         
         Connection con = null;
         PreparedStatement ps = null;
@@ -165,6 +196,7 @@ public class SponsorDao {
 
             ps.setString(1, sponsor.getName());
             ps.setString(2, sponsor.getContact_info());
+            ps.setInt(3, sponsor.getDept_id());
 
             int row = ps.executeUpdate();
             if(row > 0) {

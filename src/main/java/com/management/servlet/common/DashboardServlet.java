@@ -66,7 +66,7 @@ public class DashboardServlet extends HttpServlet {
 	        Map<Integer, String> sponsorMap = new HashMap<>();
 			SponsorDao sponsor_dao = new SponsorDao();
 			
-			for (Sponsor sp : sponsor_dao.getAllSponsors(dept_id)) {
+			for (Sponsor sp : sponsor_dao.getByDeptId(dept_id)) {
 			    sponsorMap.put(sp.getSponsor_id(), sp.getName());
 			}
 			
