@@ -24,16 +24,16 @@
 	</form>
 	<br>
 	<form action="AddUserForm" method="post" >
-		<button type="submit" >Add user</button>
+		<button type="submit" >Add Sponsors</button>
 	</form>
 	
 	<h2>Auditors</h2>
 	
 	<c:forEach var="sponsor" items="${sponsors}">
-	    <form action="DeleteUser" method="get">
+	    <form action="DeleteSponsor" method="post">
 	        <div>${sponsor.name}</div>
 	        <div>${sponsor.contact_info}</div>
-	        <input type="hidden" name="user_id" value="${sponsor.sponsor_id}" />
+	        <input type="hidden" name="sponsor_id" value="${sponsor.sponsor_id}" />
 	        <button type="submit">Delete</button>
 	    </form>
 	    <br>

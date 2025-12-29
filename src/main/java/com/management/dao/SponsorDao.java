@@ -51,7 +51,7 @@ public class SponsorDao {
     }
     
     public List<Sponsor> getByDeptId(int dept_id) {
-        String query = "select * from Sponsors where dept_id = ?";
+        String query = "select * from Sponsors where dept_id = ? and state = true";
         
         Connection con = null;
         PreparedStatement ps = null;
@@ -197,6 +197,32 @@ public class SponsorDao {
             ps.setString(1, sponsor.getName());
             ps.setString(2, sponsor.getContact_info());
             ps.setInt(3, sponsor.getSponsor_id());
+
+            int row = ps.executeUpdate();
+            if (row > 0) return true;
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            try { if (ps != null) ps.close(); } catch (Exception e) {}
+            try { if (con != null) con.close(); } catch (Exception e) {}
+        }
+        return false;
+    }
+    
+    public boolean deactivateSponsor(int sponsor_id) {
+        String query = "update sponsors set state = false where sponsor_id = ?";
+        
+        Connection con = null;
+        PreparedStatement ps = null;
+
+        try {
+            Class.forName(driver);
+            con = DriverManager.getConnection(url, name, password);
+            ps = con.prepareStatement(query);
+
+            ps.setInt(1, sponsor_id);
 
             int row = ps.executeUpdate();
             if (row > 0) return true;
