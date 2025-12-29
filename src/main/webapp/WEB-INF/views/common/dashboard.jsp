@@ -80,7 +80,7 @@
 			<br />
 	    </c:forEach>
 		
-		<form action="/FundManagement/Components/SponsorshipForm.jsp" method="post" >
+		<form action="president/AddSponsorshipForm" method="post" >
 			<input type="hidden" value="${user.getDept_id()}" name="dept_id" >
 			<button type="submit" >Add Sponsorhip</button>
 		</form>

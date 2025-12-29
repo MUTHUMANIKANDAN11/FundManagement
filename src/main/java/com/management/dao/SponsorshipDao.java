@@ -229,9 +229,46 @@ public class SponsorshipDao {
 
         return sponsorship;
     }
+    
+    public Sponsorship getBySponsorAndSymposium(int sponsorId, int sympId) {
+    	String query = "select * from Sponsorships where sponsor_id = ? and symp_id = ?";
+
+	    Connection con = null;
+	    PreparedStatement ps = null;
+	    ResultSet rs = null;
+	    
+	    Sponsorship sponsorship = null;
+
+	    try {
+	        Class.forName(driver);
+	        con = DriverManager.getConnection(url, name, password);
+
+	        ps = con.prepareStatement(query);
+	        ps.setInt(1, sponsorId);
+	        ps.setInt(2, sympId);
+
+	        rs = ps.executeQuery();
+
+	        if (rs.next()) {
+	            sponsorship = new Sponsorship( rs.getInt("sponsor_id"), rs.getDouble("amount"), rs.getDate("sponsorship_date"), rs.getInt("symp_id"));
+	            
+	            sponsorship.setSponsorship_id(rs.getInt("sponsorship_id"));
+	        }
+	        
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    finally {
+	        try { if (rs != null) rs.close(); } catch (Exception e) {}
+	        try { if (ps != null) ps.close(); } catch (Exception e) {}
+	        try { if (con != null) con.close(); } catch (Exception e) {}
+	    }
+
+	    return sponsorship;
+    }
 
     public Sponsorship addSponsorship(Sponsorship sponsorship) {
-        String query = "insert into Sponsorships (sponsor_id, symp_id, amount, date) values (?, ?, ?, ?)";
+        String query = "insert into Sponsorships (sponsor_id, symp_id, amount, sponsorship_date) values (?, ?, ?, ?)";
 
         Connection con = null;
         PreparedStatement ps = null;
