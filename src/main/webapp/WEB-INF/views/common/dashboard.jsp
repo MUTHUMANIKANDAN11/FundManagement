@@ -66,6 +66,11 @@
 		
 		<p>Department Name: ${department.getDept_name()}</p>
 		
+		<form action="president/SymposiumOverview" method="Post" >
+			<input type="hidden" value="${user.getDept_id()}" name="dept_id" >
+			<button type="submit" >Symposium Overview</button>
+		</form>
+		
 		<p>Sponsorships List</p>
 		<c:forEach var="sponsorship" items="${sponsorships}">
 		        <p>Sponsor : ${sponsors[sponsorship.sponsor_id]}</p>
@@ -74,12 +79,6 @@
 		         <p>Symposium : ${symposiums[sponsorship.symp_id]}</p>
 			<br />
 	    </c:forEach>
-	    
-		
-		<form action="/FundManagement/DepartmentSymposiumOverview" method="Post" >
-			<input type="hidden" value="${user.getDept_id()}" name="dept_id" >
-			<button type="submit" >Symposium Overview</button>
-		</form>
 		
 		<form action="/FundManagement/Components/SponsorshipForm.jsp" method="post" >
 			<input type="hidden" value="${user.getDept_id()}" name="dept_id" >

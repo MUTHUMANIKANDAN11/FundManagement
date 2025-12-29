@@ -63,8 +63,6 @@ public class DashboardServlet extends HttpServlet {
             SponsorshipDao sponsorshipDao = new SponsorshipDao();
             List<Sponsorship> sponsorships = sponsorshipDao.getSponsorshipsByDept(dept_id);
 	        
-            System.out.println(sponsorships);
-            
 	        Map<Integer, String> sponsorMap = new HashMap<>();
 			SponsorDao sponsor_dao = new SponsorDao();
 			
