@@ -71,15 +71,6 @@
 			<button type="submit" >Symposium Overview</button>
 		</form>
 		
-		<p>Sponsorships List</p>
-		<c:forEach var="sponsorship" items="${sponsorships}">
-		        <p>Sponsor : ${sponsors[sponsorship.sponsor_id]}</p>
-		        <p>Amount : ${sponsorship.getAmount()} </p>
-		        <p>Date : ${sponsorship.getSponsorship_date().toString()} </p>
-		         <p>Symposium : ${symposiums[sponsorship.symp_id]}</p>
-			<br />
-	    </c:forEach>
-		
 		<form action="president/AddSponsorshipForm" method="post" >
 			<input type="hidden" value="${user.getDept_id()}" name="dept_id" >
 			<button type="submit" >Add Sponsorhip</button>
@@ -89,6 +80,16 @@
 			<input type="hidden" value="${user.getDept_id()}" name="dept_id" >
 			<button type="submit" >Manage Sponsors</button>
 		</form>
+		
+		<p>Sponsorships List</p>
+		<c:forEach var="sponsorship" items="${sponsorships}">
+		        <p>Sponsor : ${sponsors[sponsorship.sponsor_id]}</p>
+		        <p>Amount : ${sponsorship.getAmount()} </p>
+		        <p>Date : ${sponsorship.getSponsorship_date().toString()} </p>
+		         <p>Symposium : ${symposiums[sponsorship.symp_id]}</p>
+			<br />
+	    </c:forEach>
+		
 	<%
 	}
 	%>

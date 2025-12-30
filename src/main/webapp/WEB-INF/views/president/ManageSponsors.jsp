@@ -14,6 +14,13 @@
 	<%
 		User user = (User) session.getAttribute("User");
 		List<Sponsor> sponsors = (List<Sponsor>) request.getAttribute("sponsors");
+		List<Sponsor> newSponsors = null;
+		
+		if(request.getAttribute("newSponsors") != null){
+			newSponsors = (List<Sponsor>) request.getAttribute("newSponsor");
+		}
+		
+		session.setAttribute("sponsors", sponsors);
 	%>
 	
 	<form action="${pageContext.request.contextPath}/dashboard">
@@ -26,7 +33,13 @@
 	
 	<h2>Sponsors</h2>
 	
-	<c:forEach var="sponsor" items="${sponsors}">
+	<form action="SearchSponsor" method="post" >
+		<input type="text"  name="keyword" placeholder="search sponsor" >
+		<button type="submit" >search</button>	
+	</form>
+	<br>
+	
+	<c:forEach var="sponsor" items="${newSponsors != null ? newSponsors : sponsors}">
 	    <form action="DeleteSponsor" method="post">
 	        <div>${sponsor.name}</div>
 	        <div>${sponsor.contact_info}</div>
