@@ -13,6 +13,10 @@
 </head>
 <body>
 	<h1>Dashboard</h1>
+	<form action="${pageContext.request.contextPath}/logout">
+		<button type="submit">logout</button>
+	</form>
+	
 	<%
     User user = (User) session.getAttribute("User");
 	request.setAttribute("user", user);
@@ -23,10 +27,9 @@
 	} else if (user.getRole().equals("HOD")) {
 		
 	%>
-	<form action="${pageContext.request.contextPath}/logout">
-		<button type="submit">logout</button>
-	</form>
+	
 	<h3>${user.getRole()}</h3>
+	<p>Department Name: ${department.getDept_name()}</p>
 		
 	<form action="${pageContext.request.contextPath}/hod/SymposiumForm" method="Post" >
 	    <button type="submit" >Add Symposium</button>	    

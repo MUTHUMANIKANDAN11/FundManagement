@@ -17,7 +17,7 @@ public class SponsorshipDao {
         Sponsorship sponsorship = new Sponsorship(
         		rs.getInt("sponsor_id"),
         	    rs.getDouble("amount"),
-        	    rs.getDate("date"),
+        	    rs.getDate("sponsorship_date"),
         	    rs.getInt("symp_id")
         );
         

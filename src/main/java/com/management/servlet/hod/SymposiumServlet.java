@@ -30,8 +30,6 @@ public class SymposiumServlet extends HttpServlet {
 		SymposiumDao dao = new SymposiumDao();
 		Symposium symp = dao.getSymposiumById(symp_id);
 		
-		System.out.println(symp);
-		
 		DepartmentDao dept_dao = new DepartmentDao();
 		Department dept = dept_dao.getDepartmentById(user.getDept_id());
 		

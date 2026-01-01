@@ -13,6 +13,8 @@
 	<h1>Manage Sponsors</h1>
 	<%
 		User user = (User) session.getAttribute("User");
+		int dept_id = user.getDept_id();
+		
 		List<Sponsor> sponsors = (List<Sponsor>) request.getAttribute("sponsors");
 		List<Sponsor> newSponsors = null;
 		
@@ -40,9 +42,17 @@
 	<br>
 	
 	<c:forEach var="sponsor" items="${newSponsors != null ? newSponsors : sponsors}">
+        <div>${sponsor.name}</div>
+        <div>${sponsor.contact_info}</div>
+        
+	    <form action="SponsorDetails" method="post">
+	        <input type="hidden" name="sponsor_id" value="${sponsor.sponsor_id}" >
+	        <input type="hidden" name="dept_id" value=<%= dept_id %>>
+	        <button type="submit">Details</button>
+	    </form>
+	    <br>
+	    
 	    <form action="DeleteSponsor" method="post">
-	        <div>${sponsor.name}</div>
-	        <div>${sponsor.contact_info}</div>
 	        <input type="hidden" name="sponsor_id" value="${sponsor.sponsor_id}" />
 	        <button type="submit">Delete</button>
 	    </form>

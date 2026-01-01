@@ -56,8 +56,6 @@ public class YearReportServlet extends HttpServlet {
 		}
 
 		request.setAttribute("currentRecords", currentRecords);
-
-		System.out.println(request.getContextPath());
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("YearReportForm");
 		dispatcher.forward(request, response);
