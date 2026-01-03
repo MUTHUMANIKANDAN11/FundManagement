@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.management.dao.SponsorDao;
 import com.management.dao.SponsorshipDao;
 import com.management.dao.SymposiumDao;
+import com.management.model.SponsorDetails;
 import com.management.model.Sponsorship;
 import com.management.model.Symposium;
 
@@ -28,23 +30,29 @@ public class SponsorDetailsServlet extends HttpServlet {
 		int dept_id = Integer.parseInt(request.getParameter("dept_id"));
 		
 		SponsorshipDao dao = new SponsorshipDao();
-		
 		List<Sponsorship> sponsorships = dao.getBySponsorId(sponsor_id);
+		
+		SponsorDao sponsor_dao = new SponsorDao();
+		SponsorDetails details = new SponsorDetails();
+		
+		details.setSponsor(sponsor_dao.getSponsorById(sponsor_id));
+		
 		SymposiumDao symp_dao = new SymposiumDao();
 		
-		List<Sponsorship> dept_spon = new ArrayList();
+		double totalfund = 0;
 		
 		for (Sponsorship sponsorship: sponsorships) {
 			int symp_id = sponsorship.getSymp_id();
 			Symposium symp = symp_dao.getSymposiumById(symp_id);
 			
 			if(symp.getDept_id() == dept_id) {
-				dept_spon.add(sponsorship);
+				details.add(sponsorship, symp);
+				totalfund += sponsorship.getAmount();
 			}
 		}
-		
-		System.out.println(dept_spon);
-		System.out.println(sponsorships);
+
+		details.setTotal(totalfund);
+		request.setAttribute("details", details);
 		
 		request.getRequestDispatcher("/WEB-INF/views/president/SponsorDetails.jsp").forward(request, response);
 	}

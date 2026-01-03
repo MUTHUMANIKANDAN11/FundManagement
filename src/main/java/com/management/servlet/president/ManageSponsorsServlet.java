@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.management.dao.SponsorDao;
-import com.management.dao.UserDao;
 import com.management.model.Sponsor;
 import com.management.model.User;
 
