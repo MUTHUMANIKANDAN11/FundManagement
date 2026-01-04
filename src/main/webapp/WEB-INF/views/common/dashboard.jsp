@@ -97,9 +97,9 @@
 	} else if (user.getRole().equals("AUDITOR")) {
 	%>
 		<c:forEach var="symp" items="${symps}">
-			<form action="/FundManagement/SymposiumById" method="Post" >
+			<form action="auditor/SymposiumDetails" method="Post" >
 				<input type="hidden" value="${symp.symp_id}" name="symp_id" >
-				<input type="hidden" value="Components/Auditor/SymposiumDetails.jsp" name="url" >
+
 				<button type="submit" >
 			        <p>Id : ${symp.getSymp_id()} </p>
 			        <p>Title : ${symp.title} </p>
