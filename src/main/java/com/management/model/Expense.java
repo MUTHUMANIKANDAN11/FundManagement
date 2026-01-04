@@ -55,4 +55,10 @@ public class Expense {
 	public void setReference(String reference) {
 		this.reference = reference;
 	}
+
+	@Override
+	public String toString() {
+		return "Expense [expense_id=" + expense_id + ", symp_id=" + symp_id + ", amount=" + amount + ", expense_date="
+				+ expense_date + ", purpose=" + purpose + ", reference=" + reference + "]";
+	}
 }

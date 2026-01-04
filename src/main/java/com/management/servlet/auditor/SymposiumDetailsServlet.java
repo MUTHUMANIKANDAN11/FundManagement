@@ -38,6 +38,7 @@ public class SymposiumDetailsServlet extends HttpServlet {
         double totalCollection = symp.getAllocation() + totalSponsorship + symp.getCarry_forward();
         double balance = symp.getTotal();
 
+        System.out.println(expenses);
         
         request.setAttribute("symp", symp);
         request.setAttribute("expenses", expenses);

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 import="com.management.model.Symposium, java.util.List, com.management.model.Expense"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,7 +35,19 @@ import="com.management.model.Symposium, java.util.List, com.management.model.Exp
 	<hr/>
      
     <h2>Expenses</h2>
-     
+    
+    <c:forEach var="expense" items="${expenses}">
+		<form action="auditor/SymposiumDetails" method="Post" >
+
+			<button type="submit" >
+		        <p>Purpose : ${expense.purpose} </p>
+		        <p>Amount : ${expense.amount} </p>			
+			</button>
+		</form>
+		<br/>
+    </c:forEach>
+    
+    <h2>Add Expense:</h2>
     <form action="/FundManagement/AddExpense" method="post" enctype="multipart/form-data" >
 		<input type="hidden" value="${symp.symp_id}" name="symp_id" >
 		<input type="hidden" value="Components/Auditor/SymposiumDetails.jsp" name="url" >
@@ -50,11 +64,6 @@ import="com.management.model.Symposium, java.util.List, com.management.model.Exp
     <% if(request.getAttribute("errorMessage") != null){ %>
     	"${errorMessage}"
     <% } %>
-     
-	<form action="Components/Auditor/ViewExpenses.jsp" >
-		<input type="hidden" value="${symp.symp_id}" name="symp_id" >
-		<button type="submit" >View Expense</button>
-	</form>
      
 </body>
 </html>
