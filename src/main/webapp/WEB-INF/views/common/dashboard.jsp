@@ -94,6 +94,23 @@
 	    </c:forEach>
 		
 	<%
+	} else if (user.getRole().equals("AUDITOR")) {
+	%>
+		<c:forEach var="symp" items="${symps}">
+			<form action="/FundManagement/SymposiumById" method="Post" >
+				<input type="hidden" value="${symp.symp_id}" name="symp_id" >
+				<input type="hidden" value="Components/Auditor/SymposiumDetails.jsp" name="url" >
+				<button type="submit" >
+			        <p>Id : ${symp.getSymp_id()} </p>
+			        <p>Title : ${symp.title} </p>
+			        <p>Acadamic Year : ${symp.academic_year} </p>
+			        <p>Start Date : ${symp.start_date} </p>
+			        <p>End Date : ${symp.end_date} </p>
+			        <p>Allocation : ${symp.allocation} </p>				
+				</button>
+			</form>
+	    </c:forEach>
+	<%
 	}
 	%>
 

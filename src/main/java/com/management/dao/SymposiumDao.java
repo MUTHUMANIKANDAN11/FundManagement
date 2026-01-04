@@ -238,7 +238,7 @@ public class SymposiumDao {
 			ps = con.prepareStatement(query);
 			
 	        ps.setInt(1, deptId);
-	        ps.setInt(2, year - 1);
+	        ps.setInt(2, year);
 	        
 	        rs = ps.executeQuery();
             if (rs.next()) {

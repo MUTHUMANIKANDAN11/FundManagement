@@ -1,7 +1,6 @@
 package com.management.servlet.common;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -83,10 +82,12 @@ public class DashboardServlet extends HttpServlet {
 		}
 		
 		else if(user.getRole().equals("AUDITOR")) {
-			req.setAttribute("dept_id", user.getDept_id());
-			req.setAttribute("url", "pages/dashboard.jsp");
+			int dept_id = user.getDept_id();
 
-			req.getRequestDispatcher("SymposiumByDepartment").forward(req, res);
+			SymposiumDao dao = new SymposiumDao();
+	        List<Symposium> symps = dao.getSymposiumByDept_id(dept_id);
+	        
+	        req.getSession().setAttribute("symps", symps);
 		}
 		
 		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/common/dashboard.jsp");

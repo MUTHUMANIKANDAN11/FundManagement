@@ -155,7 +155,7 @@ public class AddSymposiumServlet extends HttpServlet {
         
         double sum = 0;
         try {
-			sum = dao.getCarryForwardSum(dept_id, academic_year);
+			sum = dao.getCarryForwardSum(dept_id, academic_year - 1);
 			dao.resetTotalAmount(dept_id, academic_year);
 		} catch (SQLException e) {
 			e.printStackTrace();
