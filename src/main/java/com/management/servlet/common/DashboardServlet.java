@@ -50,6 +50,10 @@ public class DashboardServlet extends HttpServlet {
 		else if(user.getRole().equals("HOD")) {
 			List<Symposium> symps = SymposiumByDepartment(user.getDept_id());
 			symps.sort(Comparator.comparingInt(Symposium::getAcademic_year));
+			DepartmentDao dept_dao = new DepartmentDao();
+			Department department = dept_dao.getDepartmentById(user.getDept_id());
+			
+			req.setAttribute("department", department);
 			req.setAttribute("Symps", symps);
 		}
 		
@@ -83,10 +87,13 @@ public class DashboardServlet extends HttpServlet {
 		
 		else if(user.getRole().equals("AUDITOR")) {
 			int dept_id = user.getDept_id();
-
+			
 			SymposiumDao dao = new SymposiumDao();
 	        List<Symposium> symps = dao.getSymposiumByDept_id(dept_id);
-	        
+	        DepartmentDao dept_dao = new DepartmentDao();
+			Department department = dept_dao.getDepartmentById(user.getDept_id());
+			
+			req.setAttribute("department", department);
 	        req.getSession().setAttribute("symps", symps);
 		}
 		

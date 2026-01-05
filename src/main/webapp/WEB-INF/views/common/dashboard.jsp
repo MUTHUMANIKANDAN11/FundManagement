@@ -67,6 +67,7 @@
 			Map<Integer, String> sponsorMap = (Map<Integer, String>) request.getAttribute("sponsors");
 		%>
 		
+		<h3>${user.getRole()}</h3>
 		<p>Department Name: ${department.getDept_name()}</p>
 		
 		<form action="president/SymposiumOverview" method="Post" >
@@ -96,6 +97,10 @@
 	<%
 	} else if (user.getRole().equals("AUDITOR")) {
 	%>
+	
+		<h3>${user.getRole()}</h3>
+		<p>Department Name: ${department.getDept_name()}</p>
+		
 		<c:forEach var="symp" items="${symps}">
 			<form action="auditor/SymposiumDetails" method="Post" >
 				<input type="hidden" value="${symp.symp_id}" name="symp_id" >
