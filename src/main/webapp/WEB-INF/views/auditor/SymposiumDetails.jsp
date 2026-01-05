@@ -28,6 +28,7 @@ import="com.management.model.Symposium, java.util.List, com.management.model.Exp
      
     <h2>Summary</h2>
 	<p>Allocation: ${symp.allocation}</p>
+	<p>Carry Forward: ${symp.carry_forward}</p>
 	<p>Sponsorship Collected: ${totalSponsorship}</p>
 	<p>Total Collected: ${totalCollection}</p>
 	<p>Total Expenses: ${totalExpenses}</p>

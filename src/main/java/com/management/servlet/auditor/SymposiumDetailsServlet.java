@@ -36,7 +36,7 @@ public class SymposiumDetailsServlet extends HttpServlet {
         double totalSponsorship = sponsorshipDao.totalSponsorshipsPerSymposium(symp_id);
         double totalExpenses = expenseDao.totalExpensePerSymposium(symp_id);
         double totalCollection = symp.getAllocation() + totalSponsorship + symp.getCarry_forward();
-        double balance = symp.getTotal();
+        double balance = totalCollection - totalExpenses;
         
         request.setAttribute("symp", symp);
         request.setAttribute("expenses", expenses);
