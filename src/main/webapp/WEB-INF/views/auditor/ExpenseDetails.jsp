@@ -56,9 +56,7 @@
 	
 	<h3>Upload / Change Reference</h3>
 	
-	<form action="${pageContext.request.contextPath}/auditor/UpdateExpenseFile"
-	      method="post"
-	      enctype="multipart/form-data">
+	<form action="UpdateExpenseFile" method="post" enctype="multipart/form-data">
 	
 	    <input type="hidden" name="expense_id" value="${expense.expense_id}">
 	    <input type="hidden" name="symp_id" value="${expense.symp_id}">
@@ -68,6 +66,9 @@
 	    <br><br>
 	
 	    <button type="submit">Upload / Change File</button>
+	    <% if(request.getAttribute("errorMessage") != null){ %>
+	    	"${errorMessage}"
+	    <% } %>
 	
 	</form>
 	

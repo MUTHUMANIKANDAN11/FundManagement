@@ -256,4 +256,33 @@ public class ExpenseDao {
 
         return false;
     }
+
+	public boolean updateExpenseReference(int expense_id, String newBillPath) {
+		String query = "UPDATE expenses SET reference = ? WHERE expense_id = ?";
+
+		Connection con = null;
+	    PreparedStatement ps = null;
+	    
+	    try {
+            Class.forName(driver);
+            con = DriverManager.getConnection(url, username, password);
+            ps = con.prepareStatement(query);
+            
+            ps.setString(1, newBillPath);
+            ps.setInt(2, expense_id);
+
+            int row = ps.executeUpdate();
+            
+            if (row > 0) return true;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            try { if (ps != null) ps.close(); } catch (Exception e) {}
+            try { if (con != null) con.close(); } catch (Exception e) {}
+        }
+
+        return false;
+	}
 }
