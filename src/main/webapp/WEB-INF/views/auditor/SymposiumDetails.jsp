@@ -49,7 +49,7 @@ import="com.management.model.Symposium, java.util.List, com.management.model.Exp
     </c:forEach>
     
     <h2>Add Expense:</h2>
-    <form action="/FundManagement/AddExpense" method="post" enctype="multipart/form-data" >
+    <form action="AddExpense" method="post" enctype="multipart/form-data" >
 		<input type="hidden" value="${symp.symp_id}" name="symp_id" >
 		<input type="hidden" value="Components/Auditor/SymposiumDetails.jsp" name="url" >
 		<input type="hidden" value="${balance}" name="balance" >
@@ -57,14 +57,15 @@ import="com.management.model.Symposium, java.util.List, com.management.model.Exp
 		Purpose: <input type="text" name="purpose" value="<%= request.getAttribute("purpose") != null ? request.getAttribute("purpose") : "" %>" > <br /><br />
 		Amount: <input type="text" name="amount" <%= request.getAttribute("amount") != null ? request.getAttribute("amount") : "" %> > <br /><br />
 		Date: <input type="date" name="bill_date" <%= request.getAttribute("bill_date") != null ? request.getAttribute("bill_date") : "" %> > <br /><br />
-		Bill: <input type="file" name="bill_file" accept=".jpg,.jpeg,.png,.pdf" required><br><br>
+		Bill: <input type="file" name="bill_file" accept=".jpg,.jpeg,.png,.pdf"><br><br>
+
 		
 		<button type="submit" >Add Expense</button>
+	    <% if(request.getAttribute("errorMessage") != null){ %>
+	    	"${errorMessage}"
+	    <% } %>
     </form> <br /><br />
      
-    <% if(request.getAttribute("errorMessage") != null){ %>
-    	"${errorMessage}"
-    <% } %>
      
 </body>
 </html>
