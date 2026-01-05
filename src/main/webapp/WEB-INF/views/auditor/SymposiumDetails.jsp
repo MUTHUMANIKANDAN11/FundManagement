@@ -38,8 +38,8 @@ import="com.management.model.Symposium, java.util.List, com.management.model.Exp
     <h2>Expenses</h2>
     
     <c:forEach var="expense" items="${expenses}">
-		<form action="auditor/SymposiumDetails" method="Post" >
-
+		<form action="ExpenseDetails" method="Post" >
+			<input type="hidden" name="expense_id" value="${expense.expense_id}" >
 			<button type="submit" >
 		        <p>Purpose : ${expense.purpose} </p>
 		        <p>Amount : ${expense.amount} </p>			
